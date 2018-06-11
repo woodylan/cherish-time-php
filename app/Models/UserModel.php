@@ -97,4 +97,37 @@ class UserModel extends BaseModel
 
         return $modelDatas;
     }
+
+    public function getByOpenId($openId)
+    {
+        return self::where('open_id', $openId)
+            ->first();
+    }
+
+    public function updateUserInfo($nickName, $gender, $city, $province, $country)
+    {
+        $this->nick_name = $nickName;
+        $this->sex = $gender;
+        $this->city = $city;
+        $this->province = $province;
+        $this->country = $country;
+
+        $this->save();
+
+        return $this;
+    }
+
+    public function addNew($openId, $nickName, $sex, $city, $province, $country, $avatar)
+    {
+        $this->open_id = $openId;
+        $this->nick_name = $nickName;
+        $this->sex = $sex;
+        $this->city = $city;
+        $this->province = $province;
+        $this->country = $country;
+        $this->avatar = $avatar;
+        $this->save();
+
+        return $this->id;
+    }
 }

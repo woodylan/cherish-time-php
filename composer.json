@@ -13,7 +13,8 @@
         "aliyuncs/oss-sdk-php": "^2.3",
         "phpoffice/phpspreadsheet": "^1.2",
         "symfony/var-dumper": "^3.4",
-        "illuminate/redis": "^5.5"
+        "illuminate/redis": "^5.5",
+        "overtrue/wechat": "~4.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
