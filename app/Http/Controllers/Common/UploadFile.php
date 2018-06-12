@@ -49,7 +49,7 @@ class UploadFile extends Controller
 
         //上传文件
         $uploadToOSS = new Upload();
-        $uploadToOSS->setDir(Config::envConfig('app.uploadFilePath'), StringTool::uuid(), $extension);
+        $uploadToOSS->setDir(Config::envConfig('app.uploadFilePath'), StringTool::createUuid(), $extension);
         $url = $uploadToOSS->uploadContent($content);
 
         return $this->render(RetCode::SUCCESS, 'success', [

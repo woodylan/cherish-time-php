@@ -33,7 +33,7 @@ class Upload
     public function setDir($dir, $fileName, $ext)
     {
         if (empty($fileName)) {
-            $name = StringTool::uuid();
+            $name = StringTool::createUuid();
         } else {
             $name = $fileName;
         }
@@ -60,7 +60,7 @@ class Upload
         $file = substr($file, $startIndex);
         $content = base64_decode($file);
 
-        $this->setDir(Config::envConfig('app.uploadFilePath'), StringTool::uuid(), $ext);
+        $this->setDir(Config::envConfig('app.uploadFilePath'), StringTool::createUuid(), $ext);
 
         return $this->uploadContent($content);
     }

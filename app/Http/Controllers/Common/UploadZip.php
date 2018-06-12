@@ -46,7 +46,7 @@ class UploadZip extends Controller
             Util::errorCode(RetCode::NOT_ZIP_FILE);
         }
 
-        $dirName = StringTool::uuid();
+        $dirName = StringTool::createUuid();
         $localDirectory = storage_path('zip') . "/{$dirName}";
 
         //解压压缩包

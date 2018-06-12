@@ -1,5 +1,8 @@
 <?php
+
 namespace App\Tools;
+
+use Webpatser\Uuid\Uuid;
 
 class StringTool
 {
@@ -14,34 +17,22 @@ class StringTool
             $secs = time() - $days * 86400;
             $machineCode = sprintf("%02d", config('app.machine.code', 1));
             $num = mt_rand(1, 9999);
-            $id = sprintf("%05d%01d%05d%01d%04d", $days, $machineCode {
-                0}, $secs, $machineCode {
-                1}, $num);
+            $id = sprintf("%05d%01d%05d%01d%04d", $days, $machineCode{
+            0}, $secs, $machineCode{
+            1}, $num);
         } while (isset($exists[$id]));
         $exists[$id] = true;
         return $id;
     }
 
-    public static function uuid()
-    {
-        if (function_exists('uuid_create')) {
-            return str_replace('-', '', uuid_create());
-        } else {
-            return str_replace('.', '', uniqid('2', true));
-        }
-    }
-
     public static function createUuid($short = true)
     {
-        static $exists = [];
-        do {
-            $md5 = md5(self::uuid());
-            if ($short) {
-                $md5 = substr($md5, 8, 16);
-            }
-        } while (isset($exists[$md5]));
-        $exists[$md5] = true;
-        return strtoupper($md5);
+        $uuid = str_replace('-', '', Uuid::generate()->string);
+        if ($short) {
+            $uuid = substr($uuid, 8, 16);
+        }
+
+        return $uuid;
     }
 
     public static function fenToYuan($fen)

@@ -5,7 +5,7 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=7",
+        "php": ">=7.1",
         "laravel/lumen-framework": "5.5.*",
         "vlucas/phpdotenv": "~2.2",
         "barryvdh/laravel-ide-helper": "^2.4",
@@ -14,7 +14,8 @@
         "phpoffice/phpspreadsheet": "^1.2",
         "symfony/var-dumper": "^3.4",
         "illuminate/redis": "^5.5",
-        "overtrue/wechat": "~4.0"
+        "overtrue/wechat": "~4.0",
+        "webpatser/laravel-uuid": "^3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
