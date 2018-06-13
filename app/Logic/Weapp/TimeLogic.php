@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Logic\Order;
+namespace App\Logic\Weapp;
 
 use App\Define\RetCode;
 use App\Logic\BaseLogic;
-use App\Models\OrderModel;
+use App\Models\TimeModel;
 use App\Tools\ArrayTool;
 use App\Tools\StringTool;
 use App\Tools\Util;
@@ -13,16 +13,19 @@ class TimeLogic extends BaseLogic
 {
     public function create(array $inputData)
     {
+        $user = $this->user;
         //参数校验
         if (!$this->_validateEditParam($inputData)) {
             Util::errorCode(RetCode::PARAM_ERROR);
         }
 
-        $orderModel = new OrderModel(StringTool::createUuid());
+        $timeModel = new TimeModel(StringTool::createUuid());
+
+        $inputData['userId'] = $user->id;
 
         \DB::beginTransaction();
         //before save
-        $orderModel->add($inputData);
+        $timeModel->add($inputData, $user);
         //after save
         \DB::commit();
     }
@@ -35,7 +38,7 @@ class TimeLogic extends BaseLogic
         }
 
         $id = $inputData['id'];
-        $orderModel = new OrderModel($id);
+        $orderModel = new TimeModel($id);
         if (!$orderModel->exists) {
             Util::errorCode(RetCode::ERR_OBJECT_NOT_FOUND);
         }
@@ -55,7 +58,7 @@ class TimeLogic extends BaseLogic
 
     public function getList(int $currentPage = 1, int $perPage = 10, array $condition = [], $format = null): array
     {
-        $model = new OrderModel();
+        $model = new TimeModel();
         $models = $model->getList($condition, $currentPage, $perPage);
 
         //整合批量数据，用于将需要用到的方法透传到modelListToArray内部，共函数内部调用使用
@@ -73,7 +76,7 @@ class TimeLogic extends BaseLogic
 
     public function getDetail(string $id, $format = null): array
     {
-        $orderModel = new OrderModel($id);
+        $orderModel = new TimeModel($id);
         if (!$orderModel->exists) {
             Util::errorCode(RetCode::ERR_OBJECT_NOT_FOUND);
         }
@@ -83,7 +86,7 @@ class TimeLogic extends BaseLogic
 
     public function delete(string $id)
     {
-        $orderModel = new OrderModel($id);
+        $orderModel = new TimeModel($id);
         if (!$orderModel->exists) {
             Util::errorCode(RetCode::ERR_OBJECT_NOT_FOUND);
         }

@@ -20,28 +20,21 @@ class TimeModel extends BaseModel
         'date' => 'integer'
     ];
 
-    public function add(array $inputData, array $adminUser = [])
+    public function add(array $inputData, UserModel $user = null)
     {
-        //step.1 填充字段
-        //可以使用以下两种方式，--任选一种--
-        //但是一定要慎重，不能以方便为第一选择依据，一定要以合理的系统设计为第一准则
-        //method.1 当传入字段完全可以成为数据库字段时
-        //添加可填充的字段
         $this->fillable([
-            'title',
-            'author',
-            'content',
+            'name',
+            'date',
+            'type',
+            'color',
+            'remark',
+            'user_id'
         ]);
+
         //填充字段
         $this->fill(ArrayTool::snakeCaseArray($inputData, false));
+        $this->fillOperationUser($user);
 
-        //method.2 当传入字段与最外层不一致时
-        $this->title = $inputData['title_test'] ?? '';//加入传入的是title_test
-
-        //step.2 如果有记录管理后台人员，则在这里显式的进行保存处理，因为不一定所有的model都有
-        $this->fillOperationUser($adminUser);
-
-        //step.3 save
         $this->save();
     }
 

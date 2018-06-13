@@ -60,7 +60,8 @@ class BaseModel extends Model
 
     /**
      * 填充允许修改的字段
-     * @param $data
+     *
+     * @param      $data
      * @param null $fillable
      * @param null $dirty
      */
@@ -212,16 +213,17 @@ class BaseModel extends Model
 
     /**
      * 填充操作人、操作时间
+     *
      * @param $row
      */
-    protected function fillOperationUser($adminUser)
+    protected function fillOperationUser($user)
     {
-        if (empty($adminUser)) {
+        if (empty($user)) {
             return;
         }
-        $this->update_user_id = $adminUser['userId'] ?? '';
+        $this->update_user_id = $user->id ?? '';
         if (!$this->exists) {
-            $this->create_user_id = $adminUser['userId'] ?? '';
+            $this->create_user_id = $user->id ?? '';
         }
     }
 }
