@@ -1,14 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: johnson
- * Date: 2018/5/5
- * Time: 下午11:27
- */
 
 namespace App\Console\Commands;
-use App\Logic\Order\OrderLogic;
-use App\Models\OrderModel;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
@@ -45,9 +37,5 @@ class Test extends Command
      */
     public function handle()
     {
-        $orderLogic = new OrderLogic();
-        $detail = $orderLogic->getList();
-        dump(DB::getQueryLog());
-        dd($detail);
     }
 }

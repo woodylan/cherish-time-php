@@ -2,15 +2,12 @@
 
 namespace App\Logic\Weapp;
 
-use App\Define\RetCode;
 use App\Exceptions\EvaException;
 use App\Formatter\UserFormatter;
 use App\Logic\BaseLogic;
-use App\Models\OrderModel;
 use App\Models\UserModel;
 use App\Tools\ArrayTool;
 use App\Tools\StringTool;
-use App\Tools\Util;
 use EasyWeChat\Factory;
 use EasyWeChat\Kernel\Exceptions\HttpException;
 use Illuminate\Support\Facades\Redis;

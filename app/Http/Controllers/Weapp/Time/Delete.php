@@ -13,7 +13,7 @@ class Delete extends Controller
      * @apiGroup          TIME
      *
      * @apiParamExample {json} 请求示例:
-     * {"name":"国庆","type":1,"color":"#e84e40","date":20181001,"remark":"旅游去咯"}
+     * {"id":"6efb11e8842885db"}
      *
      * @apiSuccessExample Success-Response:
      * {"code":0,"msg":"success","data":{}}
