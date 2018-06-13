@@ -20,7 +20,7 @@ $router->get('/api/dev', ['uses' => 'Dev@run']);
 //小程序
 $router->group(['prefix' => "/api/weapp/v1/", 'namespace' => 'Weapp'], function () use ($router) {
     //免登录
-    $router->group(['prefix' => "account/", 'namespace' => 'Account'], function () use ($router) {
+    $router->group(['prefix' => "user/", 'namespace' => 'User'], function () use ($router) {
         $router->app->any('/login', ['uses' => 'Login@run']);
         $router->app->any('/check-auth', ['uses' => 'CheckAuth@run']);
     });

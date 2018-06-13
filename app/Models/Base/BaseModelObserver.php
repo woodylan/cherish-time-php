@@ -15,7 +15,7 @@ class BaseModelObserver
     {
         if (strlen($model->getKey()) < 1) {
             //自动填充主键的值
-            $model->setAttribute($model->getKeyName(), StringTool::md5Uuid());
+            $model->setAttribute($model->getKeyName(), StringTool::createUuid());
         }
     }
 }
