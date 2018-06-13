@@ -56,15 +56,6 @@ class TimeModel extends BaseModel
         $this->save();
     }
 
-    //个别字段需要进行单独，或者是有一定复杂性或者需要联通修改其他字段时，使用单独的方法进行处理
-    public function setTitle($title)
-    {
-        //some complex stored procedure
-        $this->title = $title;
-        $this->save();
-    }
-
-    //这里是对数据取出时进行的简单逻辑处理办法，getxxxxAttribute()
     public function getContentAttribute($value)
     {
         return explode("\n", $value);
@@ -74,9 +65,7 @@ class TimeModel extends BaseModel
     {
         $model = self::query();
 
-        if (isset($condition['author'])) {
-            $model->where('authod', $condition['author']);
-        }
+        $model->where('user_id', $condition['userId']);
         $model->orderBy('create_time', 'desc');
 
         //分页组件

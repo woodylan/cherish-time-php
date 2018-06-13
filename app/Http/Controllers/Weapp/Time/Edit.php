@@ -8,6 +8,16 @@ use App\Logic\Weapp\TimeLogic;
 
 class Edit extends Controller
 {
+    /**
+     * @api               {post} /api/weapp/v1/time/edit 编辑时间
+     * @apiGroup          TIME
+     *
+     * @apiParamExample {json} 请求示例:
+     * {"id":"11111","name":"国庆","type":1,"color":"#e84e40","date":20181001,"remark":"旅游去咯"}
+     *
+     * @apiSuccessExample Success-Response:
+     * {"code":0,"msg":"success","data":{}}
+     */
     public function run()
     {
         $inputData = $this->only(['id', 'name', 'type', 'color', 'date', 'remark']);

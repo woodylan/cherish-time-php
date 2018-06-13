@@ -55,20 +55,13 @@ class TimeLogic extends BaseLogic
 
     public function getList(int $currentPage = 1, int $perPage = 10, array $condition = [], $format = null): array
     {
+        $userId = $this->user->id;
+        $condition['userId'] = $userId;
+
         $model = new TimeModel();
         $models = $model->getList($condition, $currentPage, $perPage);
 
-        //整合批量数据，用于将需要用到的方法透传到modelListToArray内部，共函数内部调用使用
-        //同时，我们希望batchData是一个map结构，这样可以看起来更规范
-        $batchData = [];
-        $batchData['userMapList'] = [
-            'bob' => [
-                'id'  => 'bob',
-                'age' => 15,
-            ],
-        ];
-
-        return ArrayTool::modelListToArray($models, $format, $batchData);
+        return ArrayTool::modelListToArray($models, $format);
     }
 
     public function getDetail(string $id, $format = null): array
