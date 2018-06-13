@@ -25,7 +25,7 @@ $router->group(['prefix' => "/api/weapp/v1/", 'namespace' => 'Weapp'], function 
         $router->app->any('/check-auth', ['uses' => 'CheckAuth@run']);
     });
 
-    $router->group(['middleware' => ['userAuth']], function () use ($router) {
+    $router->group(['middleware' => ['weappAuth']], function () use ($router) {
 
         //时间
         $router->group(['prefix' => "time/", 'namespace' => 'Time'], function () use ($router) {

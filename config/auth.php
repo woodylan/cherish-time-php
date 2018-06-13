@@ -36,8 +36,7 @@ return [
 
     'guards' => [
         'api'       => ['driver' => 'api'],
-        'adminAuth' => ['driver' => 'adminAuth'],
-        'userAuth'  => ['driver' => 'userAuth'],
+        'weappAuth' => ['driver' => 'weappAuth'],
     ],
 
     /*

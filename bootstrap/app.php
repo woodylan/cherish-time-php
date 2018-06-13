@@ -114,8 +114,7 @@ $app->singleton(
 
 $app->routeMiddleware([
     //    'auth'      => App\Http\Middleware\Authenticate::class,
-    'adminAuth' => App\Http\Middleware\Auth\AdminAuthenticate::class,
-    'userAuth'  => App\Http\Middleware\Auth\AdminAuthenticate::class,
+    'weappAuth' => App\Http\Middleware\Auth\WeappAuthenticate::class,
 ]);
 
 /*
@@ -130,7 +129,7 @@ $app->routeMiddleware([
 */
 
 $app->register(App\Providers\AppServiceProvider::class);
-//$app->register(App\Providers\AuthServiceProvider::class);
+$app->register(App\Providers\AuthServiceProvider::class);
 $app->register(App\Providers\EventServiceProvider::class);
 $app->register(\Illuminate\Redis\RedisServiceProvider::class);
 

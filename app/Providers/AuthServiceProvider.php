@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 
+use App\Logic\Weapp\Account;
+use App\Models\UserModel;
 use App\User;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -30,14 +33,17 @@ class AuthServiceProvider extends ServiceProvider
         // should return either a User instance or null. You're free to obtain
         // the User instance via an API token or any other method necessary.
 
-        $this->app['auth']->viaRequest('api', function ($request) {
-            if ($request->input('api_token')) {
-                return User::where('api_token', $request->input('api_token'))->first();
+        $this->app['auth']->viaRequest('weappAuth', function ($request) {
+            $auth = $request->header('Auth') ?? '';
+            if (!empty($auth)) {
+                $redis = Redis::get('cherishTime:' . $auth);
+                if (!empty($redis)) {
+                    $redisObj = json_decode($redis);
+                    //续命
+                    Redis::setex('journalAuth:' . $auth, Account::AUTH_EXIST_TIME, $redis);
+                    return new UserModel($redisObj->userId);
+                }
             }
         });
-
-//        $this->app->auth->extend('adminAuth', function ($app, $config) {
-//            return new \App\Http\Middleware\Auth\AuthGuard($app, $app->request, app()->companyServer, $config);
-//        });
     }
 }
