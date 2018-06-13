@@ -16,4 +16,16 @@ class TimeFormatter
             'createTime' => $class->create_time->timestamp,
         ];
     }
+
+    public function userDetailFormat($class)
+    {
+        return [
+            'id'         => $class->id,
+            'type'       => $class->type,
+            'color'      => $class->color,
+            'date'       => $class->date,
+            'remark'     => $class->remark,
+            'createTime' => $class->create_time->timestamp,
+        ];
+    }
 }
