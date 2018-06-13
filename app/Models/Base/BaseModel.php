@@ -218,7 +218,7 @@ class BaseModel extends Model
      */
     protected function fillOperationUser($user)
     {
-        if (empty($user)) {
+        if (is_null($user)) {
             return;
         }
         $this->update_user_id = $user->id ?? '';

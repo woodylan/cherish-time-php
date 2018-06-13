@@ -24,29 +24,26 @@ class TimeLogic extends BaseLogic
         $inputData['userId'] = $user->id;
 
         \DB::beginTransaction();
-        //before save
         $timeModel->add($inputData, $user);
-        //after save
         \DB::commit();
     }
 
     public function edit(array $inputData)
     {
+        $user = $this->user;
         //参数校验
         if (!$this->_validateEditParam($inputData)) {
             Util::errorCode(RetCode::PARAM_ERROR);
         }
 
         $id = $inputData['id'];
-        $orderModel = new TimeModel($id);
-        if (!$orderModel->exists) {
+        $timeModel = new TimeModel($id);
+        if (!$timeModel->exists) {
             Util::errorCode(RetCode::ERR_OBJECT_NOT_FOUND);
         }
-        \DB::beginTransaction();
 
-        //before save
-        $orderModel->edit($inputData);
-        //after save
+        \DB::beginTransaction();
+        $timeModel->edit($inputData, $user);
         \DB::commit();
     }
 
