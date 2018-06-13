@@ -82,9 +82,7 @@ class TimeLogic extends BaseLogic
         }
 
         \DB::beginTransaction();
-        //before delete
         $orderModel->delete();
-        //after delete
         \DB::commit();
     }
 }
