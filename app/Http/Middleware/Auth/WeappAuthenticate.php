@@ -4,6 +4,7 @@ namespace App\Http\Middleware\Auth;
 
 use App\Define\Retcode;
 use App\Exceptions\EvaException;
+use App\Tools\Util;
 use Closure;
 use Illuminate\Contracts\Auth\Factory as Auth;
 
@@ -31,15 +32,15 @@ class WeappAuthenticate
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \Closure $next
-     * @param  string|null $guard
+     * @param  \Closure                 $next
+     * @param  string|null              $guard
      * @return mixed
      */
     public function handle($request, Closure $next, $guard = null)
     {
         config(['auth.defaults.guard' => 'weappAuth']);
         if ($this->auth->guard($guard)->guest()) {
-            return errorCode('logic.notLogin');
+            return Util::errorCode(RetCode::ERR_NO_LOGIN);
         }
 
         return $next($request);
