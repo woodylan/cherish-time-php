@@ -31,6 +31,7 @@ return [
     RetCode::NOT_ZIP_FILE                 => ['msg' => '上传的非zip文件'],
     RetCode::ZIP_ERROR                    => ['msg' => '解压失败'],
     RetCode::NOT_INDEX_HTML_FILE          => ['msg' => '不存在index.html文件'],
+    RetCode::WECHAT_LOGIN_ERR             => ['msg' => '微信登录失败'],
 
     // 基础逻辑错误
     RetCode::ERR_OBJECT_NOT_FOUND         => ['msg' => '数据不存在'],

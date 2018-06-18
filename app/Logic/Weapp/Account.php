@@ -2,12 +2,14 @@
 
 namespace App\Logic\Weapp;
 
+use App\Define\RetCode;
 use App\Exceptions\EvaException;
 use App\Formatter\UserFormatter;
 use App\Logic\BaseLogic;
 use App\Models\UserModel;
 use App\Tools\ArrayTool;
 use App\Tools\StringTool;
+use App\Tools\Util;
 use EasyWeChat\Factory;
 use EasyWeChat\Kernel\Exceptions\HttpException;
 use Illuminate\Support\Facades\Redis;
@@ -42,7 +44,7 @@ class Account extends BaseLogic
                 throw new EvaException('小程序报错：' . $e->getMessage(), $e->getCode());
             } else {
                 //登录失败
-                return errorCode('logic.errWechatLogin');
+                return Util::errorCode(RetCode::WECHAT_LOGIN_ERR);
             }
         }
 
@@ -55,7 +57,7 @@ class Account extends BaseLogic
                 throw new EvaException('小程序报错：' . $e->getMessage(), $e->getCode());
             } else {
                 //登录失败
-                return errorCode('logic.errWechatLogin');
+                return Util::errorCode(RetCode::WECHAT_LOGIN_ERR);
             }
         }
 
@@ -88,6 +90,21 @@ class Account extends BaseLogic
         return [
             'auth'     => $auth,
             'userInfo' => $userInfo,
+        ];
+    }
+
+    public function checkAuth($auth)
+    {
+        $redis = Redis::get('cherishTime:' . $auth);
+        if (empty($redis)) {
+            return Util::errorCode(RetCode::ERR_NO_LOGIN);
+        }
+
+        $redisArray = json_decode($redis, true);
+
+        return [
+            'auth'     => $auth,
+            'userInfo' => $redisArray['userInfo']
         ];
     }
 }

@@ -34,6 +34,7 @@ class RetCode
     const NOT_ZIP_FILE = -1010; //上传的非zip文件
     const ZIP_ERROR = -1011; //解压失败
     const NOT_INDEX_HTML_FILE = -2012; //不存在index.html文件
+    const WECHAT_LOGIN_ERR = -2013; //微信登录失败
 
     const ERR_OBJECT_NOT_FOUND = -2000; //数据不存在
     const ERR_LOST_ID_ARGUMENT = -2001; //缺少ID
