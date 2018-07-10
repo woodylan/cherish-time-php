@@ -67,8 +67,6 @@ class Account extends BaseLogic
         if (empty($userModelOne)) {
             //新增用户
             $userModelOne = $userModel->addNew($weappInfo['openId'], $weappInfo['nickName'], $weappInfo['gender'], $weappInfo['city'], $weappInfo['province'], $weappInfo['country'], $weappInfo['avatarUrl']);
-
-
         } else {
             //更新用户信息
             $userModelOne = $userModelOne->updateUserInfo($weappInfo['nickName'], $weappInfo['gender'], $weappInfo['city'], $weappInfo['province'], $weappInfo['country']);

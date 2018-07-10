@@ -37,7 +37,7 @@ class Create extends Controller
         return [
             'name'   => ['required', '名称'],
             'type'   => ['required|integer|between:1,2', '类型'],
-            'color'  => ['required', '颜色'],
+            'color'  => ['required|array', '颜色'],
             'date'   => ['required|integer', '日期'],
             'remark' => ['', '备注'],
         ];

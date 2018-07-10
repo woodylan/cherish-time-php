@@ -94,7 +94,7 @@ class ArrayTool
                 $val = static::lcFirstArray($val, $recursion);
             }
             if ($trim) {
-                $arr[$key] = trim($val);
+                $arr[$key] = is_string($val) ? trim($val) : $val;
             } else {
                 $arr[$key] = $val;
             }

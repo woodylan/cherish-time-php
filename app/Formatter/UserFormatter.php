@@ -8,7 +8,7 @@ class UserFormatter
     public function userDetailFormat($class)
     {
         return [
-            'userId'   => $class->use_id,
+            'userId'   => $class->id,
             'openId'   => $class->open_id,
             'name'     => $class->nick_name,
             'avatar'   => $class->avatar,

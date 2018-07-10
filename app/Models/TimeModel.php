@@ -16,8 +16,9 @@ class TimeModel extends BaseModel
     ];
 
     protected $casts = [
-        'type' => 'integer',
-        'date' => 'integer'
+        'type'  => 'integer',
+        'date'  => 'integer',
+        'color' => 'array',
     ];
 
     public function add(array $inputData, UserModel $user = null)

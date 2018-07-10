@@ -17,7 +17,7 @@ class CreateTimeTable extends Migration
             $table->string('id', 32);
             $table->string('type')->comment('类型');
             $table->string('user_id')->comment('用户ID');
-            $table->string('color', 10)->comment('颜色');
+            $table->string('color', 64)->comment('颜色');
             $table->string('name')->comment('名称');
             $table->unsignedInteger('date')->comment('日期');
             $table->string('remark')->comment('备注');
