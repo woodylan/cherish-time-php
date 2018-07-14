@@ -115,6 +115,7 @@ $app->singleton(
 $app->routeMiddleware([
     //    'auth'      => App\Http\Middleware\Authenticate::class,
     'weappAuth' => App\Http\Middleware\Auth\WeappAuthenticate::class,
+    'throttle'  => App\Http\Middleware\ThrottleRequests::class,
 ]);
 
 /*

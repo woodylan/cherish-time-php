@@ -54,6 +54,10 @@ class Handler extends ExceptionHandler
             return response(['code' => $e->getCode(), 'msg' => $e->getMessage()]);
         }
 
+        if ($e instanceof ThrottleException) {
+            return response(['code' => $e->getCode(), 'msg' => $e->getMessage()], 429);
+        }
+
         if (!env('APP_DEBUG', false)) {
             return response(['code' => RetCode::ERR_WRONG_SYSTEM_OPERATE, 'msg' => '系统异常，请稍后重试'], 500);
         }
