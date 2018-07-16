@@ -35,11 +35,11 @@ class Create extends Controller
     public function rules()
     {
         return [
-            'name'   => ['required', '名称'],
+            'name'   => ['required|max:10', '名称'],
             'type'   => ['required|integer|between:1,2', '类型'],
             'color'  => ['required|array', '颜色'],
             'date'   => ['required|integer', '日期'],
-            'remark' => ['', '备注'],
+            'remark' => ['max:13', '备注'],
         ];
     }
 }
