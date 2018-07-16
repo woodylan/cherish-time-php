@@ -17,7 +17,7 @@ class GetList extends Controller
      * {"currentPage":1,"perPage":10}
      *
      * @apiSuccessExample Success-Response:
-     * {"code":0,"msg":"success","data":{"count":2,"perPage":10,"currentPage":1,"lastPage":1,"list":[{"id":"6efd11e8838a8980","type":1,"color":"#e84e40","date":20181001,"remark":"\u65c5\u6e38\u53bb\u54af","createTime":1528889544},{"id":"6efb11e8842885db","type":2,"color":"#ffff","date":20180614,"remark":"\u6d4b\u8bd5\u65f6\u95f4\u54c811","createTime":1528888542}]}}
+     * {"code":0,"msg":"success","data":{"count":14,"perPage":2,"currentPage":1,"lastPage":7,"list":[{"id":"867711e8ae2f2db6","name":"2323","type":2,"color":["#dad4ec","#f3e7e9"],"date":20180413,"days":94,"remark":"sdfs fsdfsdfs","sentence":{"id":"88c811e8b27c0738","content":"\u65f6\u95f4\u5e26\u7740\u660e\u663e\u7684\u6076\u610f \u7f13\u7f13\u5728\u6211\u7684\u8eab\u4e0a\u6d41\u901d","author":"\u65b0\u6d77\u8bda","book":"\u79d2\u901f\u4e94\u5398\u7c73"},"createTime":1531470637},{"id":"866a11e88749653d","name":"1212","type":1,"color":["#fc9e9a","#fed89c"],"date":20180713,"days":3,"remark":"2323","sentence":{"id":"88c811e8ab9d51f1","content":"\u8c22\u8c22\u4f60\u7684\u5fae\u7b11 \u66fe\u7ecf\u614c\u4e71\u8fc7\u6211\u7684\u5e74\u534e","author":"","book":""},"createTime":1531465472}]}}
      */
     public function run()
     {

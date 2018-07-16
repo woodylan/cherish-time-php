@@ -4,6 +4,7 @@ namespace App\Logic\Weapp;
 
 use App\Define\RetCode;
 use App\Logic\BaseLogic;
+use App\Models\SentenceModel;
 use App\Models\TimeModel;
 use App\Tools\ArrayTool;
 use App\Tools\StringTool;
@@ -60,8 +61,16 @@ class TimeLogic extends BaseLogic
 
         $model = new TimeModel();
         $models = $model->getList($condition, $currentPage, $perPage);
+        $models->map(function ($row,$key){
+            $row->serial=$key;
+            return $row;
+        });
 
-        return ArrayTool::modelListToArray($models, $format);
+        //随机获取美句
+        $sentenceModel = new SentenceModel();
+        $sentenceModelArray = $sentenceModel->getRand($perPage)->toArray();
+
+        return ArrayTool::modelListToArray($models, $format, $sentenceModelArray);
     }
 
     public function getDetail(string $id, $format = null): array

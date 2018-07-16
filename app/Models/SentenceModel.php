@@ -28,4 +28,18 @@ class SentenceModel extends BaseModel
 
         return $this->id;
     }
+
+    public function getRand($perPage)
+    {
+        $modelList = self::orderByRaw('RAND()')
+            ->take($perPage)
+            ->get();
+
+        foreach ($modelList as $model) {
+            $model->increment('show_times');
+            $model->save();
+        }
+
+        return $modelList;
+    }
 }

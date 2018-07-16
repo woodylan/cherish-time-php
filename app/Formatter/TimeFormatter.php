@@ -8,7 +8,7 @@ use Carbon\Carbon;
 
 class TimeFormatter
 {
-    public function userListFormat($class)
+    public function userListFormat($class, $sentenceModelArray)
     {
         $nowDate = (int)date('Ymd', time());
         //倒计时
@@ -20,6 +20,15 @@ class TimeFormatter
             $days = self::daysDiff($class->date, $nowDate);
         }
 
+        $sentenceModel = $sentenceModelArray[$class->serial];
+
+        $sentence = [
+            'id'      => $sentenceModel['id'],
+            'content' => $sentenceModel['content'],
+            'author'  => $sentenceModel['author'],
+            'book'    => $sentenceModel['book'],
+        ];
+
         return [
             'id'         => $class->id,
             'name'       => $class->name,
@@ -28,6 +37,7 @@ class TimeFormatter
             'date'       => $class->date,
             'days'       => $days,
             'remark'     => $class->remark,
+            'sentence'   => $sentence,
             'createTime' => $class->create_time->timestamp,
         ];
     }
