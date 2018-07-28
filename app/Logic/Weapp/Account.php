@@ -2,10 +2,12 @@
 
 namespace App\Logic\Weapp;
 
+use App\Define\Common;
 use App\Define\RetCode;
 use App\Exceptions\EvaException;
 use App\Formatter\UserFormatter;
 use App\Logic\BaseLogic;
+use App\Models\TimeModel;
 use App\Models\UserModel;
 use App\Tools\ArrayTool;
 use App\Tools\StringTool;
@@ -67,6 +69,18 @@ class Account extends BaseLogic
         if (empty($userModelOne)) {
             //新增用户
             $userModelOne = $userModel->addNew($weappInfo['openId'], $weappInfo['nickName'], $weappInfo['gender'], $weappInfo['city'], $weappInfo['province'], $weappInfo['country'], $weappInfo['avatarUrl']);
+
+            //新增记录
+            $timeModel = new TimeModel(StringTool::createUuid());
+            $inputData = [
+                'name'   => '安装惜时光',
+                'type'   => Common::TIME_TYPE_ASC,
+                'date'   => date('Ymd', time()),
+                'color'  => ["#fc9e9a", "#fed89c"],
+                'remark' => '愿今生常相随'
+            ];
+            $inputData['userId'] = $userModelOne->id;
+            $timeModel->add($inputData, $userModelOne);
         } else {
             //更新用户信息
             $userModelOne = $userModelOne->updateUserInfo($weappInfo['nickName'], $weappInfo['gender'], $weappInfo['city'], $weappInfo['province'], $weappInfo['country']);
