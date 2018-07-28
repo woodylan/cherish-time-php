@@ -128,6 +128,6 @@ class UserModel extends BaseModel
         $this->avatar = $avatar;
         $this->save();
 
-        return $this->id;
+        return $this;
     }
 }
