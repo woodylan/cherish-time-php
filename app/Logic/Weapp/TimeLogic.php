@@ -61,8 +61,8 @@ class TimeLogic extends BaseLogic
 
         $model = new TimeModel();
         $models = $model->getList($condition, $currentPage, $perPage);
-        $models->map(function ($row,$key){
-            $row->serial=$key;
+        $models->map(function ($row, $key) {
+            $row->serial = $key;
             return $row;
         });
 

@@ -72,6 +72,10 @@ class TimeFormatter
         $startTime = new Carbon($startTime);
         $endTime = new Carbon($endTime);
 
+        if ($startTime > $endTime) {
+            return null;
+        }
+
         return $endTime->diffInDays($startTime);
     }
 }
