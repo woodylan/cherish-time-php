@@ -46,6 +46,8 @@ class TimeLogic extends BaseLogic
         \DB::beginTransaction();
         $timeModel->edit($inputData, $user);
         \DB::commit();
+
+        return $timeModel;
     }
 
     private function _validateEditParam(array $inputData)

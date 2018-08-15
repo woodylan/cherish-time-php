@@ -55,6 +55,8 @@ class TimeModel extends BaseModel
         $this->fillOperationUser($user);
 
         $this->save();
+
+        return $this;
     }
 
     public function getContentAttribute($value)

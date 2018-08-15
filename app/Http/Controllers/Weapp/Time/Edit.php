@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Weapp\Time;
 
 use App\Define\RetCode;
+use App\Formatter\TimeFormatter;
 use App\Http\Controllers\Controller;
 use App\Logic\Weapp\TimeLogic;
+use App\Tools\ArrayTool;
 
 class Edit extends Controller
 {
@@ -23,9 +25,14 @@ class Edit extends Controller
         $inputData = $this->only(['id', 'name', 'type', 'color', 'date', 'remark']);
 
         $logic = new TimeLogic($this->getUser());
-        $logic->edit($inputData);
+        $model = $logic->edit($inputData);
 
-        return $this->render(RetCode::SUCCESS, 'success');
+        $ret = ArrayTool::modelToArray($model, [
+            new TimeFormatter(),
+            'userDetailFormat'
+        ]);
+
+        return $this->render(RetCode::SUCCESS, 'success', $ret);
     }
 
     public function rules()
