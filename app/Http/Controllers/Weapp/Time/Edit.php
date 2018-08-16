@@ -22,7 +22,7 @@ class Edit extends Controller
      */
     public function run()
     {
-        $inputData = $this->only(['id', 'name', 'type', 'color', 'date', 'remark']);
+        $inputData = $this->only(['id', 'name', 'color', 'date', 'remark']);
 
         $logic = new TimeLogic($this->getUser());
         $model = $logic->edit($inputData);
@@ -40,7 +40,6 @@ class Edit extends Controller
         return [
             'id'     => ['required|min:16|max:32', 'ID'],
             'name'   => ['required|max:10', '名称'],
-            'type'   => ['required|integer|between:1,2', '类型'],
             'color'  => ['required', '颜色'],
             'date'   => ['required|integer', '日期'],
             'remark' => ['max:13', '备注'],

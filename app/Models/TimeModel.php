@@ -46,7 +46,6 @@ class TimeModel extends BaseModel
         $this->fillable([
             'name',
             'date',
-            'type',
             'color',
             'remark',
             'user_id'

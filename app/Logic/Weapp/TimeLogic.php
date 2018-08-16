@@ -2,6 +2,7 @@
 
 namespace App\Logic\Weapp;
 
+use App\Define\Common;
 use App\Define\RetCode;
 use App\Logic\BaseLogic;
 use App\Models\SentenceModel;
@@ -22,6 +23,7 @@ class TimeLogic extends BaseLogic
 
         $timeModel = new TimeModel(StringTool::createUuid());
 
+        $inputData['type'] = self::getTypeByDate($inputData['date']);
         $inputData['userId'] = $user->id;
 
         \DB::beginTransaction();
@@ -95,5 +97,17 @@ class TimeLogic extends BaseLogic
         \DB::beginTransaction();
         $orderModel->delete();
         \DB::commit();
+    }
+
+    private static function getTypeByDate($targetData)
+    {
+        $nowDate = date('Ymd', time());
+
+        if ($targetData > $nowDate) {
+            //目标日
+            return Common::TIME_TYPE_DESC;
+        }
+
+        return Common::TIME_TYPE_ASC;
     }
 }
