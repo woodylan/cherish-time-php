@@ -77,7 +77,7 @@ class Account extends BaseLogic
                 'type'   => Common::TIME_TYPE_ASC,
                 'date'   => date('Ymd', time()),
                 'color'  => ["#fc9e9a", "#fed89c"],
-                'remark' => '愿今生常相随'
+                'remark' => '记下珍贵的日子'
             ];
             $inputData['userId'] = $userModelOne->id;
             $timeModel->add($inputData, $userModelOne);
