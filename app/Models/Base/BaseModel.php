@@ -2,15 +2,28 @@
 
 namespace App\Models\Base;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class BaseModel
+ *
+ * @package App\Models\Base
+ * @property string     update_user_id
+ * @property string     create_user_id
+ * @property int|string id
+ * @method static Builder where(string | array | \Closure $column, string $operator = null, mixed $value = null, string $boolean = 'and')
+ * @method static Model|Collection|static[]|static|null find(mixed $id, array $columns = ['*'])
+ * @method static \Illuminate\Database\Query\Builder|static whereIn(string $column, mixed $values, string $boolean = 'and', bool $not = false)
+ */
 class BaseModel extends Model
 {
     use SoftDeletes;
 
-    const CREATED_AT = 'create_time';
-    const UPDATED_AT = 'update_time';
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
     const DELETED_AT = 'deleted_at';
 
     public $timestamps = true;
@@ -31,7 +44,7 @@ class BaseModel extends Model
      *
      * @var string
      */
-    protected $dateFormat = 'U';
+    protected $dateFormat = 'Y-m-d H:i:s';
 
     protected $arrayFormatter;
 

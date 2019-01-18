@@ -40,7 +40,7 @@ class AuthServiceProvider extends ServiceProvider
                 if (!empty($redis)) {
                     $redisObj = json_decode($redis);
                     //续命
-                    Redis::setex('journalAuth:' . $auth, Account::AUTH_EXIST_TIME, $redis);
+                    Redis::setex('cherishTime:' . $auth, Account::AUTH_EXIST_TIME, $redis);
                     return new UserModel($redisObj->userId);
                 }
             }

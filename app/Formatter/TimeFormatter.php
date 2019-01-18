@@ -37,7 +37,7 @@ class TimeFormatter
             'days'       => $days,
             'remark'     => $class->remark,
             'sentence'   => $sentence,
-            'createTime' => $class->create_time->timestamp,
+            'createTime' => $class->created_at->timestamp,
         ];
     }
 
@@ -61,7 +61,7 @@ class TimeFormatter
             'date'       => $class->date,
             'days'       => $days,
             'remark'     => $class->remark,
-            'createTime' => $class->create_time->timestamp,
+            'createTime' => $class->created_at->timestamp,
         ];
     }
 

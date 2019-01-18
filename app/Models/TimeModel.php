@@ -68,7 +68,7 @@ class TimeModel extends BaseModel
         $model = self::query();
 
         $model->where('user_id', $condition['userId']);
-        $model->orderBy('create_time', 'desc');
+        $model->orderBy('created_at', 'desc');
 
         //分页组件
         $modelDatas = $model->paginate($perPage, ['*'], 'page', $currentPage);

@@ -25,15 +25,15 @@ class CreateTimeTable extends Migration
             $table->string('create_user_id', 32);
             $table->string('update_user_id', 32);
 
-            $table->unsignedInteger('create_time');
-            $table->unsignedInteger('update_time');
-            $table->unsignedInteger('deleted_at')->nullable();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
+            $table->timestamp('deleted_at')->nullable();
 
             $table->primary('id');
             $table->index('user_id');
             $table->index('date');
             $table->index('type');
-            $table->index('create_time');
+            $table->index('created_at');
         });
     }
 
