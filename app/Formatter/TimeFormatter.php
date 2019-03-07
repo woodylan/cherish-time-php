@@ -14,7 +14,7 @@ class TimeFormatter
         //倒计时
         if ($class->type == Common::TIME_TYPE_DESC) {
             $days = self::daysDiff($nowDate, $class->date);
-        }elseif ($class->type == Common::TIME_TYPE_ASC) {
+        } elseif ($class->type == Common::TIME_TYPE_ASC) {
             //正计时
             $days = self::daysDiff($class->date, $nowDate);
         }
@@ -48,7 +48,7 @@ class TimeFormatter
         //倒计时
         if ($class->type == Common::TIME_TYPE_DESC) {
             $days = self::daysDiff($nowDate, $class->date);
-        }elseif ($class->type == Common::TIME_TYPE_ASC) {
+        } elseif ($class->type == Common::TIME_TYPE_ASC) {
             //正计时
             $days = self::daysDiff($class->date, $nowDate);
         }
@@ -71,7 +71,7 @@ class TimeFormatter
         $endTime = new Carbon($endTime);
 
         if ($startTime > $endTime) {
-            return null;
+            return -1;
         }
 
         return $endTime->diffInDays($startTime);
